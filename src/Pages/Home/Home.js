@@ -1,4 +1,5 @@
 import React from 'react';
+import Advertise from './Advertise';
 import Banner from './Banner';
 import CarCategory from './CarCategory';
 
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <CarCategory></CarCategory>
+            <Advertise></Advertise>
         </div>
     );
 };
