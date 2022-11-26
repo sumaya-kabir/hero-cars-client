@@ -19,10 +19,12 @@ const categories = useLoaderData();
                     <Card.Img variant="top" src={category.picture} />
                     <Card.Body>
                         <Card.Title>{category.product}</Card.Title>
-                        <Card.Text>
-                            Some quick example text to build on the card title and make up the
-                            bulk of the card's content.
-                        </Card.Text>
+                        <>
+                            <p>Orginal Price: <del>{category.orginalPrice}</del> </p>
+                            <p>Resale Price: ${category.resalePrice}</p>
+                            <p>Years Of Use: {category.years} years</p>
+                            <p>Seller: {category.seller}</p>
+                        </>
                         <BookingCarModal
                         booking={category}
                         ></BookingCarModal>
