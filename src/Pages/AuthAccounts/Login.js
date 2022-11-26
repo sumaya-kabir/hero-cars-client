@@ -11,18 +11,28 @@ const Signin = () => {
 
     const from = location.state?.from?.pathname || '/'
 
+    const handleGoogleSignin = () => {
+        googleSignup()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+            })
+            .catch(err => console.log(err))
+    }
+
     const handleSignin = (event) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
-        const password= form.password.value;
+        const password = form.password.value;
 
         setSigninError('');
         signIn(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.error(err.message)
@@ -35,7 +45,25 @@ const Signin = () => {
         <div className='w-25 mx-auto bg-warning p-5 my-5 rounded'>
             <h4>Login</h4>
             <Form onSubmit={handleSignin}>
-
+                {['radio'].map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                        <Form.Check
+                            inline
+                            label="Seller"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-1`}
+                        />
+                        <Form.Check
+                            inline
+                            label="Buyer"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-2`}
+                        />
+                        
+                    </div>
+                ))}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control name="email" type="email" placeholder="Enter email" />
@@ -50,8 +78,12 @@ const Signin = () => {
                     Login
                 </Button>
             </Form>
-            <p className='text-center'>Already have an account? <Link className='text-decoration-none' to='/login'>SignIn</Link></p>
-            
+            <p className='text-center'>New to Hero Cars? <Link className='text-decoration-none' to='/signup'>SignUp</Link></p>
+            <h6 className='text-center'>OR</h6>
+            <Button className='w-100' onClick={handleGoogleSignin} variant="primary" type="submit">
+                SignIn with Google
+            </Button>
+
         </div>
     );
 };

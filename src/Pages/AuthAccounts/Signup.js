@@ -24,7 +24,7 @@ const Signup = () => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
-        const password= form.password.value;
+        const password = form.password.value;
 
         setSignupError('');
         createUser(email, password)
@@ -45,6 +45,25 @@ const Signup = () => {
         <div className='w-25 mx-auto bg-warning p-5 my-5 rounded'>
             <h4>SignUp</h4>
             <Form onSubmit={handleSignup}>
+                {['radio'].map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                        <Form.Check
+                            inline
+                            label="Seller"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-1`}
+                        />
+                        <Form.Check
+                            inline
+                            label="Buyer"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-2`}
+                        />
+
+                    </div>
+                ))}
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control name="fullName" type="text" placeholder="Full name" />

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -34,24 +33,10 @@ const MenuBar = () => {
               user?.uid ?
                 <Link className='text-decoration-none text-white fw-semibold mx-3'><button className='btn btn-warning' onClick={handleLogout}>Logout</button></Link>
                 :
-                <>
-
-                  <NavDropdown title="Login" id="basic-nav-dropdown">
-                    <NavDropdown.Item>
-                      <Link to='/login' className='text-decoration-none fw-semibold mx-3'>
-                        Seller Account
+                      <Link to='/login' className='text-decoration-none text-light fw-semibold mx-3'>
+                      <button className='btn btn-warning'>Login</button>
                       </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                    <Link to='/buyer' className='text-decoration-none fw-semibold mx-3'>
-                        Buyer Account
-                      </Link>
-                    </NavDropdown.Item>
-
-                  </NavDropdown>
-
-
-                </>
+                
             }
             <Nav.Link eventKey={2} href="#memes">
               Dank memes
