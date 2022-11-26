@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 // import logo from '../../../assets/hero-cars-logo.webp'
 
 const MenuBar = () => {
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+    .then(() => {})
+    .catch(err => console.log(err))
+}
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -20,7 +29,12 @@ const MenuBar = () => {
             <Link className='text-decoration-none text-white fw-semibold mx-3' to='/blog'>Blog</Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
+            {
+              user?.uid ?
+              <Link className='text-decoration-none text-white fw-semibold mx-3'><button className='btn btn-warning' onClick={handleLogout}>Logout</button></Link>
+              :
+              <Link to='/login' className='text-decoration-none text-white fw-semibold mx-3'><button className='btn btn-warning'>Login</button></Link>
+            }
             <Nav.Link eventKey={2} href="#memes">
               Dank memes
             </Nav.Link>
