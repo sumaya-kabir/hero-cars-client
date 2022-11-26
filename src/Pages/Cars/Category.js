@@ -20,8 +20,7 @@ const categories = useLoaderData();
                     <Card.Body>
                         <Card.Title>{category.product}</Card.Title>
                         <>
-                            <p>Orginal Price: <del>{category.orginalPrice}</del> </p>
-                            <p>Resale Price: ${category.resalePrice}</p>
+                            <p className='text-success'><del className='text-danger'>{category.orginalPrice}</del> ${category.resalePrice}</p>
                             <p>Years Of Use: {category.years} years</p>
                             <p>Seller: {category.seller}</p>
                         </>

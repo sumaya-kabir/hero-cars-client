@@ -11,16 +11,6 @@ const Signin = () => {
 
     const from = location.state?.from?.pathname || '/'
 
-    const handleGoogleSignin = () => {
-        googleSignup()
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                navigate(from, {replace: true});
-            })
-            .catch(err => console.log(err))
-    }
-
     const handleSignin = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -61,10 +51,7 @@ const Signin = () => {
                 </Button>
             </Form>
             <p className='text-center'>Already have an account? <Link className='text-decoration-none' to='/login'>SignIn</Link></p>
-            <h6 className='text-center'>OR</h6>
-            <Button className='w-100' onClick={handleGoogleSignin} variant="primary" type="submit">
-                SignIn with Google
-            </Button>
+            
         </div>
     );
 };

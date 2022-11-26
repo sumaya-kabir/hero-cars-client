@@ -5,6 +5,7 @@ import Category from "../Pages/Cars/Category";
 import Home from "../Pages/Home/Home";
 import Signup from "../Pages/AuthAccounts/Signup";
 import Signin from "../Pages/AuthAccounts/Login"
+import BuyerLogin from "../Pages/AuthAccounts/BuyerLogin";
 
 
 const routes = createBrowserRouter([
@@ -34,6 +35,10 @@ const routes = createBrowserRouter([
                 path: '/login',
                 element: <Signin></Signin>
             },
+            {
+                path: '/buyer',
+                element: <BuyerLogin></BuyerLogin>
+            }
         ]
     }
 ]);
