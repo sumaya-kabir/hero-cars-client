@@ -1,0 +1,95 @@
+[
+    {
+        "category": "Convertible",
+        "product":  "Lamborghini Urus",
+        "orginal-price": "$155,000",
+        "resale-price" : "135,000",
+        "location": "Ontario",
+        "picture": "https://images.pexels.com/photos/337909/pexels-photo-337909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "seller":"Bonnie",
+        "years": 2
+
+    },
+    {
+        "category": "Convertible",
+        "product":  "Ferrari F8 Tributo",
+        "orginal-price": "$15,000",
+        "resale-price" : "13,000",
+        "location": "Quebec",
+        "picture": "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "seller":"Jennie",
+        "years": 1.5
+
+    },
+    {
+        "category": "Convertible",
+        "product":  "BMW M6",
+        "orginal-price": "$400,000",
+        "resale-price" : "335,000",
+        "location": "Toronto",
+        "picture": "https://images.pexels.com/photos/1335077/pexels-photo-1335077.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "seller":"Tennie",
+        "years": 3
+
+    },
+    {
+        "category": "Sedan",
+        "product":  "Mercedes-Benz S 65 AMG",
+        "orginal-price": "$226,000",
+        "resale-price" : "200,000",
+        "location": "New Foundland",
+        "picture": "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "seller":"Lennie",
+        "years": 1.5
+    },
+    {
+        "category": "Sedan",
+        "product":  "Audi A7 3.0T Prestige quattro",
+        "orginal-price": "$400,000",
+        "resale-price" : "335,000",
+        "location": "Toronto",
+        "picture": "https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "seller":"Jerrie",
+        "years": 2.5
+    },
+    {
+        "category": "Sedan",
+        "product":  "BMW M3 Base",
+        "orginal-price": "$400,000",
+        "resale-price" : "335,000",
+        "location": "Saskachuan",
+        "picture": "https://images.pexels.com/photos/810357/pexels-photo-810357.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "seller":"Berry",
+        "years": 3.5
+    },
+    {
+        "category": "Coupe",
+        "product":  "Audi Q3 2.0T Prestige",
+        "orginal-price": "$300,000",
+        "resale-price" : "234,000",
+        "location": "Toronto",
+        "picture": "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "seller":"Nennie",
+        "years": 2
+    },
+    {
+        "category": "Coupe",
+        "product":  "BMW X1",
+        "orginal-price": "$400,000",
+        "resale-price" : "325,000",
+        "location": "Quebec",
+        "picture": "https://images.pexels.com/photos/794435/pexels-photo-794435.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "seller":"Rennie",
+        "years": 3
+    },
+    {
+        "category": "Coupe",
+        "product":  "Mercedes-Benz C63 AMG",
+        "orginal-price": "$390,000",
+        "resale-price" : "335,000",
+        "location": "Edmonton",
+        "picture": "https://images.pexels.com/photos/2365572/pexels-photo-2365572.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "seller":"Cherry",
+        "years": 1
+    }
+]
