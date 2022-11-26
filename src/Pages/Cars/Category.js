@@ -1,14 +1,15 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { useLoaderData } from 'react-router-dom';
+import BookingCarModal from './BookingCarModal';
 
 const Category = () => {
 const categories = useLoaderData();
 
     
     return (
-        <div>
-            Category{categories[0].category}
+        <div className='p-5'>
+            <h2>Category: <span className='text-warning fw-bold'>{categories[0].category}</span></h2>
             <div className='row'>
                 {
                     categories.map(category => 
@@ -22,9 +23,9 @@ const categories = useLoaderData();
                             Some quick example text to build on the card title and make up the
                             bulk of the card's content.
                         </Card.Text>
-                        <Button
-                        className='w-100'
-                        variant="warning">Buy Now</Button>
+                        <BookingCarModal
+                        booking={category}
+                        ></BookingCarModal>
                     </Card.Body>
                 </Card>)
                 }
