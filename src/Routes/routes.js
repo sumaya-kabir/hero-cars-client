@@ -59,7 +59,8 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/dashboard/addproducts',
-                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>,
+                loader: () => fetch('http://localhost:5000/cars')
             },
             {
                 path: '/dashboard/sellers',
