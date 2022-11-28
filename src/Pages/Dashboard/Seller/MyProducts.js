@@ -15,6 +15,26 @@ const MyProducts = () => {
         }
     })
 
+    const handleAdvertise = (advertise) => {
+        console.log(advertise);
+        fetch('http://localhost:5000/advertise', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(advertise)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    console.log(data);
+                    toast.success('The Product is Advertised successfully');
+                } else {
+                    toast.error(data.message)
+                }
+            })
+    }
+
     const handleDelete = product => {
         fetch(`http://localhost:5000/myproducts/${product._id}`,{
             method: 'DELETE',
@@ -44,6 +64,7 @@ const MyProducts = () => {
                         <th>Item Image</th>
                         <th>Item Name</th>
                         <th>Price</th>
+                        <th>Status</th>
                         <th>Advertisement</th>
                         <th>Delete</th>
                     </tr>
@@ -56,7 +77,8 @@ const MyProducts = () => {
                                 <td className='w-25'><img className='w-25 rounded' src={product.picture} alt="" /></td>
                                 <td>{product.product}</td>
                                 <td>{product.resalePrice}</td>
-                                <td><button className='btn btn-info'>Advertise</button></td>
+                                <td className='text-success'>Available</td>
+                                <td><button onClick={() => handleAdvertise(product)} className='btn btn-info btn-sm'>Advertise</button></td>
                                 <td><button onClick={() => handleDelete(product)} className='border-0 text-danger fw-bold'>X</button></td>
                             </tr>
                         )

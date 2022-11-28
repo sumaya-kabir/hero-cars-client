@@ -12,6 +12,8 @@ import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
 import AddProduct from "../Pages/Dashboard/Seller/AddProduct";
 import Sellers from "../Pages/Dashboard/Admin/Sellers";
 import Buyers from "../Pages/Dashboard/Admin/Buyers";
+import NotFound from "../Pages/NotFound/NotFound";
+import Blog from "../Pages/Blog/Blog";
 
 
 
@@ -29,6 +31,10 @@ const routes = createBrowserRouter([
                 path: '/cars',
                 element: <Cars></Cars>,
                 loader: () => fetch('http://localhost:5000/cars')
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/category/:category',
@@ -70,6 +76,10 @@ const routes = createBrowserRouter([
                 element: <Buyers></Buyers>
             },
         ]
+    },
+    {
+        path: '*',
+        element: <NotFound></NotFound>
     }
 ]);
 
