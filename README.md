@@ -3,7 +3,7 @@
 
 ## adminEmail: <herocars@admin.com>
 
-## adminPassword: <herocars>
+## adminPassword: herocars
 
 ### Features of this website project -
 * Light-weight code
