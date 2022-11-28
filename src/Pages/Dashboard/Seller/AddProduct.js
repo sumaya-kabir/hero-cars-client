@@ -1,17 +1,20 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 
 
 const AddProduct = () => {
     const categories = useLoaderData();
-    const {category} = categories;
+    const { category } = categories;
 
     const handleAddProduct = (event) => {
         event.preventDefault();
         const form = event.target;
+        const seller = form.seller.value;
         const category = form.category.value;
         const product = form.item.value;
+        const years = form.year.value;
         const condition = form.condition.value;
         const phone = form.phone.value;
         const location = form.location.value;
@@ -21,13 +24,32 @@ const AddProduct = () => {
         const newProduct = {
             category,
             product,
+            seller,
+            years,
             condition,
             phone,
             location,
-            price,
+            resalePrice: price,
             description
 
         }
+
+        fetch('http://localhost:5000/cars', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    console.log(data);
+                    toast.success('The Product Added Successfully');
+                } else {
+                    toast.error(data.message)
+                }
+            })
     }
 
     return (
@@ -36,13 +58,18 @@ const AddProduct = () => {
             <div className='w-25 mx-auto my-5'>
                 <form onSubmit={handleAddProduct}>
                     <Form.Control type="text"
+                        name="seller"
+                        placeholder='Seller Name'
+                        required />
+                        <br />
+                    <Form.Control type="text"
                         name="item"
                         placeholder='Product Name'
                         required />
                     <br />
-                    <Form.Select name="category" 
-                    required
-                    aria-label="Default select example">
+                    <Form.Select name="category"
+                        required
+                        aria-label="Default select example">
                         <option>Select Product Category</option>
                         <option value="Convertible">Convertible</option>
                         <option value="Sedan">Sedan</option>
@@ -56,7 +83,7 @@ const AddProduct = () => {
                     <br />
                     <Form.Control type="text"
                         name="year"
-                        placeholder="Year of Purchase"
+                        placeholder="Year of Use"
                         required />
                     <br />
                     <Form.Control type="text"
