@@ -9,7 +9,7 @@ const MyProducts = () => {
     const { data: myproducts = [], refetch } = useQuery({
         queryKey: ['myproducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myproducts?email=${user?.email}`);
+            const res = await fetch(`https://hero-cars-server.vercel.app/myproducts?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -17,7 +17,7 @@ const MyProducts = () => {
 
     const handleAdvertise = (advertise) => {
         console.log(advertise);
-        fetch('http://localhost:5000/advertise', {
+        fetch('https://hero-cars-server.vercel.app/advertise', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -36,7 +36,7 @@ const MyProducts = () => {
     }
 
     const handleDelete = product => {
-        fetch(`http://localhost:5000/myproducts/${product._id}`,{
+        fetch(`https://hero-cars-server.vercel.app/myproducts/${product._id}`,{
             method: 'DELETE',
             // headers: {
                 

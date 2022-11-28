@@ -3,11 +3,18 @@ import { Button, Form } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
     const { createUser, googleSignup } = useContext(AuthContext);
     const [signupError, setSignupError] = useState('');
     const navigate = useNavigate();
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail);
+
+    if(token) {
+        navigate('/');
+    }
 
     const handleGoogleSignin = () => {
         googleSignup()
@@ -39,7 +46,6 @@ const Signup = () => {
                 console.log(user);
                 handleSellers(name, email, role)
                 toast('User created successfully');
-                navigate('/');
             })
             .catch(err => {
                 console.error(err.message)
@@ -50,7 +56,7 @@ const Signup = () => {
 
     const handleSellers = (name, email, role) => {
         const allSeller = { name, email, role };
-        fetch('http://localhost:5000/sellers', {
+        fetch('https://hero-cars-server.vercel.app/sellers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -59,13 +65,13 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                setCreatedUserEmail(email);
             })
     }
 
     const handleBuyers = (name, email) => {
         const allBuyer = { name, email, role: "buyer" };
-        fetch('http://localhost:5000/buyers', {
+        fetch('https://hero-cars-server.vercel.app/buyers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

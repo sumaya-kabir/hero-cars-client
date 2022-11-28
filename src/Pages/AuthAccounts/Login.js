@@ -2,14 +2,20 @@ import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Signin = () => {
     const { signIn, googleSignup } = useContext(AuthContext);
     const [signinError, setSigninError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
 
-    const from = location.state?.from?.pathname || '/'
+    const from = location.state?.from?.pathname || '/';
+    if(token) {
+        navigate(from, {replace: true});
+    }
 
     const handleGoogleSignin = () => {
         googleSignup()
@@ -35,7 +41,7 @@ const Signin = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, { replace: true });
+                setLoginUserEmail(email)
             })
             .catch(err => {
                 console.error(err.message)
@@ -48,25 +54,6 @@ const Signin = () => {
         <div className='w-25 mx-auto bg-warning p-5 my-5 rounded'>
             <h4>Login</h4>
             <Form onSubmit={handleSignin}>
-                {['radio'].map((type) => (
-                    <div key={`inline-${type}`} className="mb-3">
-                        <Form.Check
-                            inline
-                            label="Seller"
-                            name="seller"
-                            type={type}
-                            id={`inline-${type}-1`}
-                        />
-                        <Form.Check
-                            inline
-                            label="Buyer"
-                            name="buyer"
-                            type={type}
-                            id={`inline-${type}-2`}
-                        />
-                        
-                    </div>
-                ))}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control name="email" type="email" placeholder="Enter email" />
