@@ -50,7 +50,7 @@ const Signup = () => {
 
     const handleSellers = (name, email, role) => {
         const allSeller = { name, email, role };
-        fetch('http://localhost:5000/sellers', {
+        fetch('https://hero-cars-server.vercel.app/sellers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -65,7 +65,7 @@ const Signup = () => {
 
     const handleBuyers = (name, email) => {
         const allBuyer = { name, email, role: "buyer" };
-        fetch('http://localhost:5000/buyers', {
+        fetch('https://hero-cars-server.vercel.app/buyers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

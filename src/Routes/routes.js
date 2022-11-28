@@ -30,7 +30,7 @@ const routes = createBrowserRouter([
             {
                 path: '/cars',
                 element: <Cars></Cars>,
-                loader: () => fetch('http://localhost:5000/cars')
+                loader: () => fetch('https://hero-cars-server.vercel.app/cars')
             },
             {
                 path: '/blog',
@@ -39,7 +39,7 @@ const routes = createBrowserRouter([
             {
                 path: '/category/:category',
                 element: <Category></Category>,
-                loader: ({params}) => fetch(`http://localhost:5000/cars/${params.category}`)
+                loader: ({params}) => fetch(`https://hero-cars-server.vercel.app/cars/${params.category}`)
             },
             {
                 path: '/signup',
