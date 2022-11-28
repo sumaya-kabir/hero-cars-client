@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import toast from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
 
 const AddProduct = () => {
-    const categories = useLoaderData();
-    const { category } = categories;
+    const navigate = useNavigate();
+    const {user} = useContext(AuthContext);
 
     const handleAddProduct = (event) => {
         event.preventDefault();
         const form = event.target;
         const seller = form.seller.value;
+        const email = form.email.value;
         const category = form.category.value;
         const product = form.item.value;
+        const picture = form.photo.value;
         const years = form.year.value;
         const condition = form.condition.value;
         const phone = form.phone.value;
@@ -24,7 +27,9 @@ const AddProduct = () => {
         const newProduct = {
             category,
             product,
+            picture,
             seller,
+            email,
             years,
             condition,
             phone,
@@ -46,6 +51,7 @@ const AddProduct = () => {
                 if (data.acknowledged) {
                     console.log(data);
                     toast.success('The Product Added Successfully');
+                    navigate('/dashboard/myproducts')
                 } else {
                     toast.error(data.message)
                 }
@@ -62,6 +68,11 @@ const AddProduct = () => {
                         placeholder='Seller Name'
                         required />
                         <br />
+                        <Form.Control type="email"
+                        name="email"
+                        defaultValue={user?.email}
+                        required />
+                        <br />
                     <Form.Control type="text"
                         name="item"
                         placeholder='Product Name'
@@ -75,6 +86,11 @@ const AddProduct = () => {
                         <option value="Sedan">Sedan</option>
                         <option value="Coupe">Coupe</option>
                     </Form.Select>
+                    <br />
+                    <Form.Control type="text"
+                        name="photo"
+                        placeholder="Product Image"
+                        />
                     <br />
                     <Form.Control type="text"
                         name="price"
