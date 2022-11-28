@@ -14,6 +14,7 @@ import Sellers from "../Pages/Dashboard/Admin/Sellers";
 import Buyers from "../Pages/Dashboard/Admin/Buyers";
 import NotFound from "../Pages/NotFound/NotFound";
 import Blog from "../Pages/Blog/Blog";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 
@@ -30,7 +31,7 @@ const routes = createBrowserRouter([
             {
                 path: '/cars',
                 element: <Cars></Cars>,
-                loader: () => fetch('https://hero-cars-server.vercel.app/cars')
+                loader: () => fetch('http://localhost:5000/cars')
             },
             {
                 path: '/blog',
@@ -38,8 +39,8 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/category/:category',
-                element: <Category></Category>,
-                loader: ({params}) => fetch(`https://hero-cars-server.vercel.app/cars/${params.category}`)
+                element: <PrivateRoutes><Category></Category></PrivateRoutes>,
+                loader: ({params}) => fetch(`http://localhost:5000/cars/${params.category}`)
             },
             {
                 path: '/signup',
@@ -53,7 +54,7 @@ const routes = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
         children: [
             {
                 path: '/dashboard',

@@ -7,7 +7,7 @@ const Buyers = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch(`https://hero-cars-server.vercel.app/buyers`);
+            const res = await fetch(`http://localhost:5000/buyers`);
             const data = await res.json();
             return data;
         }
@@ -15,7 +15,7 @@ const Buyers = () => {
 
     const handleDelete = buyer => {
         console.log(buyer)
-        fetch(`https://hero-cars-server.vercel.app/buyers/${buyer._id}`,{
+        fetch(`http://localhost:5000/buyers/${buyer._id}`,{
             method: 'DELETE',
             // headers: {
                 

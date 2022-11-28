@@ -39,7 +39,7 @@ const AddProduct = () => {
 
         }
 
-        fetch('https://hero-cars-server.vercel.app/cars', {
+        fetch('http://localhost:5000/cars', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -5,7 +5,7 @@ const useSeller = () => {
     const [isSellerLoading, setIsSellerLoading] = useState(true);
 
     useEffect(() => {
-            fetch(`https://hero-cars-server.vercel.app/sellers`)
+            fetch(`http://localhost:5000/sellers`)
             .then(res => res.json())
             .then( data => {
                 setIsSeller(data.isAdmin);
