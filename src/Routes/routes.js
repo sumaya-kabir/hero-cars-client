@@ -5,6 +5,14 @@ import Category from "../Pages/Cars/Category";
 import Home from "../Pages/Home/Home";
 import Signup from "../Pages/AuthAccounts/Signup";
 import Signin from "../Pages/AuthAccounts/Login"
+import DashboardLayout from "../Layouts/DashboardLayout";
+import MyOrders from "../Pages/Dashboard/MyOrders";
+import SellerRoute from "./SellerRoute";
+import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
+import AddProduct from "../Pages/Dashboard/Seller/AddProduct";
+import Sellers from "../Pages/Dashboard/Admin/Sellers";
+import Buyers from "../Pages/Dashboard/Admin/Buyers";
+
 
 
 
@@ -34,6 +42,32 @@ const routes = createBrowserRouter([
             {
                 path: '/login',
                 element: <Signin></Signin>
+            },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/myproducts',
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
+            },
+            {
+                path: '/dashboard/addproducts',
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
+            },
+            {
+                path: '/dashboard/sellers',
+                element: <Sellers></Sellers>
+            },
+            {
+                path: '/dashboard/buyers',
+                element: <Buyers></Buyers>
             },
         ]
     }

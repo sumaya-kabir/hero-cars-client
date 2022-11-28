@@ -7,7 +7,7 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 
 
 const BookingCarModal = ({ booking }) => {
-    const { product, resalePrice, category} = booking;
+    const { product, resalePrice, category, picture} = booking;
     const {user} = useContext(AuthContext)
 
     const [show, setShow] = useState(false);
@@ -32,7 +32,8 @@ const BookingCarModal = ({ booking }) => {
             email,
             phone,
             meeting,
-            price
+            price,
+            picture
 
         }
         // TODO: send data to the server

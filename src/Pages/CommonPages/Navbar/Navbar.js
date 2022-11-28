@@ -25,18 +25,25 @@ const MenuBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
+            <Link className='text-decoration-none text-white fw-semibold mx-3' to='/'>Home</Link>
             <Link className='text-decoration-none text-white fw-semibold mx-3' to='/cars'>Cars</Link>
             <Link className='text-decoration-none text-white fw-semibold mx-3' to='/blog'>Blog</Link>
+            {
+              user?.uid ?
+                <Link className='text-decoration-none text-white fw-semibold mx-3' to='/dashboard'>Dashboard</Link>
+                :
+                <></>
+            }
           </Nav>
           <Nav>
             {
               user?.uid ?
                 <Link className='text-decoration-none text-white fw-semibold mx-3'><button className='btn btn-warning' onClick={handleLogout}>Logout</button></Link>
                 :
-                      <Link to='/login' className='text-decoration-none text-light fw-semibold mx-3'>
-                      <button className='btn btn-warning'>Login</button>
-                      </Link>
-                
+                <Link to='/login' className='text-decoration-none text-light fw-semibold mx-3'>
+                  <button className='btn btn-warning'>Login</button>
+                </Link>
+
             }
             <Nav.Link eventKey={2} href="#memes">
               Dank memes

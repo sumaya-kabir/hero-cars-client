@@ -13,6 +13,7 @@ const Signup = () => {
         googleSignup()
             .then(result => {
                 const user = result.user;
+                handleBuyers(user?.displayName, user?.email)
                 console.log(user);
                 toast('User created successfully');
                 navigate('/');
@@ -24,13 +25,19 @@ const Signup = () => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
+        const name = form.fullName.value;
+        const role = form.role.value;
         const password = form.password.value;
+        
+
+        console.log( name, role, password);
 
         setSignupError('');
         createUser(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                handleSellers(name, email, role)
                 toast('User created successfully');
                 navigate('/');
             })
@@ -41,31 +48,48 @@ const Signup = () => {
 
     }
 
+    const handleSellers = (name, email, role) => {
+        const allSeller = { name, email, role };
+        fetch('http://localhost:5000/sellers', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(allSeller)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+    }
+
+    const handleBuyers = (name, email) => {
+        const allBuyer = { name, email, role: "buyer" };
+        fetch('http://localhost:5000/buyers', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(allBuyer)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+    }
+
+
+
     return (
         <div className='w-25 mx-auto bg-warning p-5 my-5 rounded'>
             <h4>SignUp</h4>
             <Form onSubmit={handleSignup}>
-                {['radio'].map((type) => (
-                    <div key={`inline-${type}`} className="mb-3">
-                        <Form.Check
-                            inline
-                            label="Seller"
-                            name="group1"
-                            type={type}
-                            id={`inline-${type}-1`}
-                        />
-                        <Form.Check
-                            inline
-                            label="Buyer"
-                            name="group1"
-                            type={type}
-                            id={`inline-${type}-2`}
-                        />
-
-                    </div>
-                ))}
+                <Form.Select name="role">
+                    <option value="buyer">Buyer</option>
+                    <option value="seller">Seller</option>
+                </Form.Select>
                 <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>Name</Form.Label>
                     <Form.Control name="fullName" type="text" placeholder="Full name" />
                 </Form.Group>
 

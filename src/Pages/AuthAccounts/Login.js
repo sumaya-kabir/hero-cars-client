@@ -26,6 +26,9 @@ const Signin = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        const seller = form.seller.value;
+
+        console.log(seller);
 
         setSigninError('');
         signIn(email, password)
@@ -50,14 +53,14 @@ const Signin = () => {
                         <Form.Check
                             inline
                             label="Seller"
-                            name="group1"
+                            name="seller"
                             type={type}
                             id={`inline-${type}-1`}
                         />
                         <Form.Check
                             inline
                             label="Buyer"
-                            name="group1"
+                            name="buyer"
                             type={type}
                             id={`inline-${type}-2`}
                         />
