@@ -21,7 +21,8 @@ const AddProduct = () => {
         const condition = form.condition.value;
         const phone = form.phone.value;
         const location = form.location.value;
-        const price = form.price.value;
+        const price1 = form.price1.value;
+        const price2 = form.price2.value;
         const description = form.description.value;
 
         const newProduct = {
@@ -34,8 +35,10 @@ const AddProduct = () => {
             condition,
             phone,
             location,
-            resalePrice: price,
-            description
+            orginalPrice: price1,
+            resalePrice: price2,
+            description,
+            isVerified: false
 
         }
 
@@ -61,7 +64,7 @@ const AddProduct = () => {
     return (
         <div>
             <h2 className='text-center mt-5'>Add a Product</h2>
-            <div className='w-25 mx-auto my-5'>
+            <div className='w-50 mx-auto my-5'>
                 <form onSubmit={handleAddProduct}>
                     <Form.Control type="text"
                         name="seller"
@@ -93,8 +96,13 @@ const AddProduct = () => {
                         />
                     <br />
                     <Form.Control type="text"
-                        name="price"
-                        placeholder="Price"
+                        name="price1"
+                        placeholder="Orginal Price"
+                        required />
+                    <br />
+                    <Form.Control type="text"
+                        name="price2"
+                        placeholder="Resale Price"
                         required />
                     <br />
                     <Form.Control type="text"

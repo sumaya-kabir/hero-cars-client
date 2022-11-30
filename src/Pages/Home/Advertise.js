@@ -1,6 +1,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import advertiseBG from '../../assets/advertiseBG.jpg'
 import AdvertiseCard from './AdvertiseCard';
 
@@ -8,11 +9,7 @@ const Advertise = () => {
     const { data: advertises = [] } = useQuery({
         queryKey: ['advertises'],
         queryFn: async () => {
-            const res = await fetch(`https://hero-cars-server.vercel.app/advertise`,{
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            } );
+            const res = await fetch(`https://hero-cars-server.vercel.app/advertise`);
             const data = await res.json();
             return data;
         }
@@ -25,18 +22,22 @@ const Advertise = () => {
                 backgroundPosition: 'center', backgroundSize: 'cover',
             }}>
             <h2>Advertised Cars</h2>
-            <div className='row'>
+            <Container>
+            <Row>
             {
                 advertises.map(advertise =>
-                    <AdvertiseCard 
+                    <Col className='p-2'>
+                        <AdvertiseCard 
                     key={advertise._id}
                     advertise={advertise}
                     >
                         
                     </AdvertiseCard>
+                    </Col>
                 )
             }
-            </div>
+            </Row>
+            </Container>
 
         </div>
     );

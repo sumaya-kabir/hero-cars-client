@@ -30,7 +30,9 @@ const MenuBar = () => {
             <Link className='text-decoration-none text-white fw-semibold mx-3' to='/blog'>Blog</Link>
             {
               user?.uid ?
-                <Link className='text-decoration-none text-white fw-semibold mx-3' to='/dashboard'>Dashboard</Link>
+                <>
+                  <Link className='text-decoration-none text-white fw-semibold mx-3' to='/dashboard'>Dashboard</Link>
+                </>
                 :
                 <></>
             }
@@ -38,16 +40,19 @@ const MenuBar = () => {
           <Nav>
             {
               user?.uid ?
-                <Link className='text-decoration-none text-white fw-semibold mx-3'><button className='btn btn-warning' onClick={handleLogout}>Logout</button></Link>
+                <>
+                  <Link className='text-decoration-none text-white fw-semibold mx-3'><button className='btn btn-warning' onClick={handleLogout}>Logout</button></Link>
+                  <Nav.Link>
+                    {user?.email}
+                  </Nav.Link>
+                </>
                 :
                 <Link to='/login' className='text-decoration-none text-light fw-semibold mx-3'>
                   <button className='btn btn-warning'>Login</button>
                 </Link>
 
             }
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>

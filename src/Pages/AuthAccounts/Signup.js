@@ -55,11 +55,12 @@ const Signup = () => {
     }
 
     const handleSellers = (name, email, role) => {
-        const allSeller = { name, email, role };
+        const allSeller = { name, email, role, isVerified: false };
         fetch('https://hero-cars-server.vercel.app/sellers', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(allSeller)
         })

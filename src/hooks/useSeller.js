@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
 
-const useSeller = () => {
+const useSeller = (email) => {
     const [isSeller, setIsSeller] = useState(false);
     const [isSellerLoading, setIsSellerLoading] = useState(true);
 
     useEffect(() => {
-            fetch(`https://hero-cars-server.vercel.app/sellers`)
+        if(email){
+            fetch(`https://hero-cars-server.vercel.app/sellers/${email}`)
             .then(res => res.json())
             .then( data => {
-                setIsSeller(data.isAdmin);
-                setIsSellerLoading(false);
-                
+                console.log(data);
+                setIsSeller(data.isSeller);
+                setIsSellerLoading(false)
             })
+        }
         
-    }, [])
+    }, [email])
     return [isSeller, isSellerLoading];
 };
 

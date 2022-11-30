@@ -7,7 +7,6 @@ import Signup from "../Pages/AuthAccounts/Signup";
 import Signin from "../Pages/AuthAccounts/Login"
 import DashboardLayout from "../Layouts/DashboardLayout";
 import MyOrders from "../Pages/Dashboard/MyOrders";
-import SellerRoute from "./SellerRoute";
 import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
 import AddProduct from "../Pages/Dashboard/Seller/AddProduct";
 import Sellers from "../Pages/Dashboard/Admin/Sellers";
@@ -15,6 +14,11 @@ import Buyers from "../Pages/Dashboard/Admin/Buyers";
 import NotFound from "../Pages/NotFound/NotFound";
 import Blog from "../Pages/Blog/Blog";
 import PrivateRoutes from "./PrivateRoutes";
+import Payment from "../Pages/CommonPages/Payments/Payment";
+import AllUsers from "../Pages/Dashboard/AllUSers/AllUsers";
+import AdminRoute from "./AdminRoute";
+import SellerRoute from "./SellerRoute";
+import MyWishlist from "../Pages/Dashboard/Admin/MyWishlist";
 
 
 
@@ -61,6 +65,10 @@ const routes = createBrowserRouter([
                 element: <MyOrders></MyOrders>
             },
             {
+                path: '/dashboard/wishlist',
+                element: <MyWishlist></MyWishlist>
+            },
+            {
                 path: '/dashboard/myproducts',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
@@ -69,12 +77,21 @@ const routes = createBrowserRouter([
                 element: <SellerRoute><AddProduct></AddProduct></SellerRoute>,
             },
             {
+                path: '/dashboard/users',
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            {
                 path: '/dashboard/sellers',
-                element: <Sellers></Sellers>
+                element: <AdminRoute><Sellers></Sellers></AdminRoute>
             },
             {
                 path: '/dashboard/buyers',
-                element: <Buyers></Buyers>
+                element: <AdminRoute><Buyers></Buyers></AdminRoute>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                loader: ({params}) => fetch(`https://hero-cars-server.vercel.app/bookings/${params.id}`),
+                element: <PrivateRoutes><Payment></Payment></PrivateRoutes>
             },
         ]
     },
